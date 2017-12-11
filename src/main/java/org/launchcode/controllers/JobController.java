@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 
@@ -54,7 +55,8 @@ public class JobController {
         Job newJob = new Job(thisName, thisEmployer, thisLocation, thisPositionType, thisCoreCompetency);
         jobData.add(newJob);
         int jobId = newJob.getId();
-        return "forward:/job?id=jobId";
+        model.addAttribute("id", jobId);
+        return "redirect:?id=" + jobId;
 
     }
 }
